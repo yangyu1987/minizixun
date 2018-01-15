@@ -1,0 +1,149 @@
+{% extends 'zixun/basezx.html' %}
+{#{% block h1_title %}{% endblock %}#}
+{#{% block desc %}#}
+{#    <div class="zx_lable">#}
+{#        <div class="ui horizontal divider">AI行业圈</div>#}
+{#        <div class="ui label"><a href="?kw=行业信息">行业信息</a></div>#}
+{#        <div class="ui label"><a href="?kw=同行发展">同行发展</a></div>#}
+{#        <div class="ui label"><a href="?kw=技术前沿">技术前沿信息</a></div>#}
+{#        <div class="ui label"><a href="?kw=技术合作">技术合作厂商</a></div>#}
+{#        <div class="ui label"><a href="?kw=硬件合作">硬件合作厂商</a></div>#}
+{#        <div class="ui label"><a href="?kw=会议">行业会议预告</a></div>#}
+{#        <div class="ui horizontal divider">金融版</div>#}
+{#        <div class="ui label"><a href="?kw=政策解读">政策解读</a></div>#}
+{#        <div class="ui label red"><a href="?kw=网贷要闻">网贷要闻</a></div>#}
+{#        <div class="ui label"><a href="?kw=互联网金融">互联网金融</a></div>#}
+{#        <div class="ui label"><a href="?kw=消费金融">消费金融</a></div>#}
+{#        <div class="ui label"><a href="?kw=现金贷">现金贷</a></div>#}
+{#        <div class="ui label"><a href="?kw=保险">保险</a></div>#}
+{#        <div class="ui horizontal divider">行业新闻</div>#}
+{#        <div class="ui label"><a href="?kw=电商">电商</a></div>#}
+{#        <div class="ui label"><a href="?kw=营销">营销</a></div>#}
+{#        <div class="ui label"><a href="?kw=猎头">猎头</a></div>#}
+{#        <div class="ui label"><a href="?kw=人力资源">人力资源</a></div>#}
+{#        <div class="ui label"><a href="?kw=零售">零售</a></div>#}
+{#        <div class="ui label"><a href="?kw=人脸识别">人脸识别</a></div>#}
+{#        <div class="ui label"><a href="?kw=无人超市">无人超市</a></div>#}
+{#        <div class="ui label"><a href="?kw=物流">物流</a></div>#}
+{#        <div class="ui horizontal divider">其他</div>#}
+{#        <div class="ui label"><a href="?kw=风控行业">风控</a></div>#}
+{#        <div class="ui label"><a href="?kw=反欺诈">反欺诈</a></div>#}
+{#        <div class="ui label"><a href="?kw=数据分析">数据分析</a></div>#}
+{#        <div class="ui label"><a href="?kw=流量分析">流量分析</a></div>#}
+{#    </div>#}
+{#{% endblock %}#}
+{#{% block content %}{{content}}{% endblock %}#}
+{#{% for contact in contacts %}#}
+{#    {{ contact.comp_name }}<br />#}
+{#{% endfor %}#}
+{% block content %}
+    <div class="ui statistics dividing">
+      <div class="statistic">
+        <div class="value">
+          某板块 /
+        </div>
+      </div>
+      <div class="red statistic">
+        <div class="value">
+          22
+        </div>
+        <div class="label">新增资讯 </div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          31,200
+        </div>
+        <div class="label">总数</div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          220
+        </div>
+        <div class="label">指数or阅读量</div>
+      </div>
+    </div>
+    <div class="ui dividing header"></div>
+
+    <div class="ui top attached tabular menu">
+      <a class="item active" data-tab="first">舆情/概况</a>
+      <a class="item" data-tab="second">行业信息</a>
+      <a class="item" data-tab="third">同行发展</a>
+      <a class="item" data-tab="fouth">技术前沿</a>
+      <a class="item" data-tab="fifth">合作厂商</a>
+      <a class="item" data-tab="sixth">行业会议</a>
+    </div>
+    <div class="ui bottom attached tab segment active" data-tab="first">
+        <div id="ecmain" style="width:45%;height:400px;float: left"></div>
+        <div id="ecmain1" style="width:45%;height:400px;float:right"></div>
+        <div class="ui dividing header" style="clear: both;"></div>
+        <div id="ecmain2" style="width:90%;height:400px;clear: both;"></div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="second">
+    
+
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="third">
+    <div class="ui dividing header">
+        今日主题：商汤/旷世/自动驾驶
+    </div>
+        <div class="ui relaxed divided list">
+            {% for zx in zixun %}
+                <div class="item">
+                    <div class="content">
+                      <a href="{{ zx.url }}" target="_blank">{{ zx.title }}</a> ----{{ zx.crawl_time }}
+{#                      <div class="description">----{{ zx.crawl_time }}</div>#}
+                    </div>
+                </div>
+            {% endfor%}
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="fouth">
+        <div class="ui relaxed divided list">
+            {% for zx in zixun %}
+                <div class="item">
+                    <div class="content">
+                      <a href="{{ zx.url }}" target="_blank">{{ zx.title }}</a> ----{{ zx.crawl_time }}
+{#                      <div class="description">----{{ zx.crawl_time }}</div>#}
+                    </div>
+                </div>
+            {% endfor%}
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="fifth">
+        <div class="ui relaxed divided list">
+            {% for zx in zixun %}
+                <div class="item">
+                    <div class="content">
+                      <a href="{{ zx.url }}" target="_blank">{{ zx.title }}</a> ----{{ zx.crawl_time }}
+{#                      <div class="description">----{{ zx.crawl_time }}</div>#}
+                    </div>
+                </div>
+            {% endfor%}
+        </div>
+    </div>
+    <div class="ui bottom attached tab segment" data-tab="sixth">
+        <div class="ui relaxed divided list">
+            {% for zx in zixun %}
+                <div class="item">
+                    <div class="content">
+                      <a href="{{ zx.url }}" target="_blank">{{ zx.title }}</a> ----{{ zx.crawl_time }}
+{#                      <div class="description">----{{ zx.crawl_time }}</div>#}
+                    </div>
+                </div>
+            {% endfor%}
+        </div>
+    </div>
+{% endblock %}
+{#{% block pages %}#}
+{#    <div class="ui container center aligned">#}
+{#        <div class="ui pagination menu">#}
+{#            {% if zixun.has_previous %}#}
+{#              <a class="item" href="?kw={{kw}}&page={{zixun.previous_page_number}}">pre</a>#}
+{#            {% endif %}#}
+{#              <div class="disabled item">{{ zixun.number }} of {{ zixun.paginator.num_pages }}</div>#}
+{#            {% if zixun.has_next %}#}
+{#               <a class="item" href="?kw={{kw}}&page={{zixun.next_page_number}}">next</a>#}
+{#            {% endif %}#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}

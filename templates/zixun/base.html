@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     {% load staticfiles %}
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'js/semantic.min.js'%}"></script>
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/semantic.css'%}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/docs.css'%}">
+    <title>{% block title %}首页{% endblock %}-小视科技</title>
+</head>
+<body id="example" class="started pushable">
+<div class="pusher">
+	<!--mobile-->
+    {% include 'zixun/mobile_menu.html' %}
+    <!--//mobile-->
+	<!--content-->
+    <div class="full height">
+    	<!--sidebar-->
+        {% include 'zixun/menu.html' %}
+        <!--//siderbar-->
+        <!--article-->
+        <div class="article">
+        	<!--top-->
+            <div class="ui masthead vertical segment">
+              <div class="ui container">
+                <div class="introduction">
+                  <h2 class="ui header huge">{% block h2_title %}小视科技{% endblock %}
+                      <div class="sub header">{% block desc %}科技拉近距离,数据温暖人心{% endblock %}</div>
+                  </h2>
+                </div>
+              </div>
+			</div>
+            <!--//top-->
+            <!--main-->
+            <div class="main ui intro container">
+            	<!--right bar-->
+                {% include 'zixun/right_bar.html' %}
+                <!--//right bar-->
+                <!--text-->
+                {% block h1_title %}
+                <h1 class="ui dividing header medium">
+                    小视科技（Minivision）是一家世界领先的基于Machine Learning技术
+                </h1>
+                {% endblock %}
+                <div class="no example">
+                    {% block content %}
+                     小视科技（Minivision）是一家世界领先的基于Machine Learning技术，以AI+为核心，打造一体化智能服务生态的高科技公司。
+                        公司有多年技术储备和深入的市场经验，先后获得南京江宁高新管委会、南京市国资紫金控股、印尼金光集团、上市公司等战略投资。基于海量标签，先后为银行、消费金融、保险、婚恋、租车等众多领域推出风险预警、信用评级等服务。
+                    {% endblock %}
+                </div>
+                 <!--pages-->
+                {% block pages %}
+                <div class="ui container center aligned">
+                    <p></p>
+                    <div class="ui pagination menu">
+                          <a class="active item">1</a>
+                          <div class="disabled item">...</div>
+                          <a class="item">10</a>
+                          <a class="item">11</a>
+                          <a class="item">12</a>
+                    </div>
+                </div>
+                 {% endblock %}
+                <!--//pages-->
+                <!--//text-->
+            </div>
+            <!--//main-->
+        </div>
+        <!--//article-->
+    </div>
+    <!--//content-->
+	<!--foot-->
+    {% include 'zixun/bottom.html' %}
+    <!--//foot-->
+</div>
+</body>
+</html>

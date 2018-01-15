@@ -1,0 +1,162 @@
+{% extends 'zixun/basezx.html' %}
+{% block content %}
+    <div class="ui statistics dividing">
+      <div class="statistic">
+        <div class="value">
+          某板块 /
+        </div>
+      </div>
+      <div class="red statistic">
+        <div class="value">
+          22
+        </div>
+        <div class="label">新增资讯 </div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          31,200
+        </div>
+        <div class="label">总数</div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          220
+        </div>
+        <div class="label">指数or阅读量</div>
+      </div>
+    </div>
+    <div class="ui dividing header"></div>
+    <!--box1-->
+    <div class="ui top attached tabular menu">
+      <a class="item active" data-tab="first">舆情/概况</a>
+      {% for tag in tags %}
+          {% if forloop.counter == 1 %}
+              <a class="item" data-tab="second" onclick="javascript:main3();main5()">{{ tag.tag_name }}</a>
+          {% elif tag.tag_id == 2 %}
+              <a class="item" data-tab="third" onclick="javascript:main3();main5()">{{ tag.tag_name }}</a>
+          {% elif tag.tag_id == 3 %}
+              <a class="item" data-tab="fouth" onclick="javascript:main3();main5()">{{ tag.tag_name }}</a>
+          {% elif tag.tag_id == 4 %}
+              <a class="item" data-tab="fifth" onclick="javascript:main3();main5()">{{ tag.tag_name }}</a>
+          {% elif tag.tag_id == 5 %}
+              <a class="item" data-tab="sixth" onclick="javascript:main3();main5()">{{ tag.tag_name }}</a>
+          {% elif tag.tag_id == 6 %}
+              <a class="item" data-tab="seventh" onclick="javascript:main3();main5()">{{ tag.tag_name }}</a>
+          {% endif %}
+      {% endfor%}
+
+    </div>
+    <div class="ui active tab top_tab segment " data-tab="first">
+    	<div class="ui column grid">
+        	<div class="eight wide column">
+            	<div class="ui segment pd1" id="ecmain" style="width:100%;height:360px;"></div>
+            </div>
+            <div class="eight wide column">
+            	<div class="ui segment pd1" id="ecmain1" style="width:100%;height:360px;"></div>
+            </div>
+        </div>
+        <div class="ui segment pd1">
+        	北京大学（Peking University）简称“北大”，诞生于1898年，初名京师大学堂，是中国近代第一所国立大学，也是第一个以“大学”之名创办的学校的进程。
+        </div>
+        <div class="ui segment pd1" id="ecmain2" style="width:100%;height:360px;"></div>
+
+        <!--<div class="ui column grid">
+          	<div class="ten wide column">
+            	<div class="ui segment" id="ecmain2" style="width:100%;height:500px;"></div>
+            </div>
+        </div>-->
+      	<!--<div id="ecmain" style="width:45%;height:400px;float: left"></div>
+        <div id="ecmain1" style="width:45%;height:400px;float:right"></div>
+        <div class="ui dividing header" style="clear: both;"></div>
+        <div id="ecmain2" style="width:90%;height:400px;clear: both;"></div>-->
+    </div>
+    <div class="ui tab top_tab segment" data-tab="second">
+      <div class="ui pointing secondary menu">
+        <a class="item" data-tab="second/a">统计图/讯息列表</a>
+        <a class="item" data-tab="second/b"></a>
+      </div>
+      <!--内容-->
+      <div class="ui bottom attached tab segment"  data-tab="second/a" style="border:none;">
+      	<div class="ui column grid">
+        	<div class="seven wide column">
+            	<div class="ui segment pd1">
+                	<div class="ui medium header">统计时间<div class="sub header">12-17 00:00:00~12-17 16:00:09</div></div>
+                </div>
+                <div class="ui segment pd1" id='ecmain3' style="width:100%;height:300px;">
+                </div>
+            </div>
+        	<div class="nine wide column">
+            	<div class="ui segment pd1" id='ecmain5' style="width:100%;height:378px;"></div>
+            </div>
+        </div>
+        <div class="ui segment pd1">本日预测热点：证监会发布十大举措；阿里巴巴回应190亿元控股新乐视：没有这回事 ----</div>
+         <table class="ui celled padded table">
+          <thead>
+            <tr>
+            <th>推荐指数</th>
+            <th>标题</th>
+            <th>是否有用</th>
+            <th>时间</th>
+          </tr></thead>
+          <tbody>
+          {% for zx in zixun %}
+            <tr style="text-align:center">
+              <td style="padding:0; margin:0">
+                普通/推荐
+              </td>
+              <td style="padding:0; margin:0" class="single line"><a href="{{ zx.url }}" target="_blank">{{ zx.title }}</a> ----</td>
+              <td style="padding:0; margin:0" class="right aligned" style="padding:10px;"><br /><a href="#">6 likes</a> </td>
+              <td style="padding:0; margin:0">{{ zx.crawl_time }}</td>
+            </tr>
+           {% endfor%}
+          </tbody>
+        </table>
+      </div>
+      <!--//内容-->
+    </div>
+    <div class="ui tab top_tab segment" data-tab="third">
+      <div class="ui pointing secondary menu">
+        <a class="item" data-tab="second/a">统计图/讯息列表</a>
+        <a class="item" data-tab="second/b"></a>
+      </div>
+      <!--内容-->
+      <div class="ui bottom attached tab segment"  data-tab="second/a" style="border:none;">
+      	<div class="ui column grid">
+        	<div class="seven wide column">
+            	<div class="ui segment pd1">
+                	<div class="ui medium header">统计时间<div class="sub header">12-17 00:00:00~12-17 16:00:09</div></div>
+                </div>
+                <div class="ui segment pd1" id='ecmain3' style="width:100%;height:300px;">
+                </div>
+            </div>
+        	<div class="nine wide column">
+            	<div class="ui segment pd1" id='ecmain5' style="width:100%;height:378px;"></div>
+            </div>
+        </div>
+        <div class="ui segment pd1">本日预测热点：证监会发布十大举措；阿里巴巴回应190亿元控股新乐视：没有这回事 ----</div>
+         <table class="ui celled padded table">
+          <thead>
+            <tr>
+            <th>推荐指数</th>
+            <th>标题</th>
+            <th>是否有用</th>
+            <th>时间</th>
+          </tr></thead>
+          <tbody>
+          {% for zx in zixun %}
+            <tr style="text-align:center">
+              <td style="padding:0; margin:0">
+                普通/推荐
+              </td>
+              <td style="padding:0; margin:0" class="single line"><a href="{{ zx.url }}" target="_blank">{{ zx.title }}</a> ----</td>
+              <td style="padding:0; margin:0" class="right aligned" style="padding:10px;"><br /><a href="#">6 likes</a> </td>
+              <td style="padding:0; margin:0">{{ zx.crawl_time }}</td>
+            </tr>
+           {% endfor%}
+          </tbody>
+        </table>
+      </div>
+      <!--//内容-->
+    </div>
+    <!--//box1-->
+{% endblock %}

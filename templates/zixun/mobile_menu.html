@@ -1,0 +1,27 @@
+<!--sidebar-->
+    <div class="ui vertical inverted sidebar menu left" id="toc">
+        <div class="item">
+          <a href="/index"><b>小视资讯</b></a>
+        </div>
+        {% for cate in all_cate %}
+        <div class="item">
+          <div class="header"><a href="/{{ cate.cate_id }}" style="color: #fff"> {{ cate.cate_name }}</a></div>
+          <div class="menu">
+              {% for tag in cate.cate_tag_info %}
+                <a class="item" href="/{{ cate.cate_id }}/{{ tag.tag_id }}">{{ tag.tag_name }}</a>
+              {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    <!--//sidebar-->
+    <!--top-->
+    <div class="ui fixed inverted main menu">
+      <div class="ui container">
+        <a class="launch icon item" id="mob_menu">
+          <i class="content icon"></i>
+        </a>
+        <div class="item">小视资讯 </div>
+      </div>
+    </div>
+    <!--//top-->

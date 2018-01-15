@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery/jquery-1.4.min.js"></script>
+</head>
+<body>
+<a class="a1">点我异步加载</a>
+<div class="d1"></div>
+<script>
+    $(document).ready(function () {
+        $('a.a1').click(function () {
+            $('div.d1').load('http://192.168.254.231:8000/add/')
+        })
+    })
+</script>
+</body>
+</html>

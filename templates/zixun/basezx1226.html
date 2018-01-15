@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+     {% load staticfiles %}
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'js/semantic.min.js'%}"></script>
+    <script src="{% static 'js/echarts.min.js'%}"></script>
+    <script src="{% static 'js/echartscou.js'%}"></script>
+    <script src="{% static 'js/macarons.js'%}"></script>
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/semantic.css'%}">
+    <link rel="stylesheet" type="text/css"  href="{% static 'css/docs.css'%}">
+    <title>{% block title %}首页{% endblock %}-小视科技</title>
+    <style type="text/css">
+    .ui.tab{
+        display: block;     /* undo display:none          */
+        height: 0;          /* height:0 is also invisible */
+		overflow:hidden;
+    }
+	.ui.tab.active, .ui.tab.open{
+		height: auto; /* let the content decide it */
+		}
+	.active.segment {
+		 position: relative;
+		  background: #FFFFFF;
+		  box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
+		  margin: 1rem 0em;
+		  padding: 1em 1em;
+		  border-radius: 0.28571429rem;
+		  border: 1px solid rgba(34, 36, 38, 0.15);
+		
+	}
+	.active .segment {
+		  position: relative;
+		  background: #FFFFFF;
+		  box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);
+		  margin: 1rem 0em;
+		  
+		  border-radius: 0.28571429rem;
+		  border: 1px solid rgba(34, 36, 38, 0.15);
+		
+	}
+	.pd1{
+		padding: 1em 1em;
+		}
+    </style>
+</head>
+<body id="example" class="started pushable">
+<div class="pusher">
+	<!--mobile-->
+    {% include 'zixun/mobile_menu.html' %}
+    <!--//mobile-->
+	<!--content-->
+    <div class="full height">
+    	<!--sidebar-->
+        {% include 'zixun/menuzx.html' %}
+        <!--//siderbar-->
+        <!--article-->
+        <div class="article">
+        	<!--top-->
+{#            <div class="ui masthead vertical segment">#}
+{#              <div class="ui container">#}
+{#                <div class="introduction">#}
+{#                  {% block h1_title %}<h1 class="ui header huge dividing">小视科技#}
+{#                  </h1>#}
+{#                  {% endblock %}#}
+{#                {% block desc %}科技拉近距离,数据温暖人心{% endblock %}#}
+{#                </div>#}
+{#              <!--search-->#}
+{#              <!--//search-->#}
+{#              </div>#}
+{#			</div>#}
+            <!--//top-->
+            <!--main-->
+            <div class="main ui intro container">
+                <!--text-->
+                    {% block content %}
+                        <div class="no example">
+                     小视科技（Minivision）是一家世界领先的基于Machine Learning技术，以AI+为核心，打造一体化智能服务生态的高科技公司。
+                        公司有多年技术储备和深入的市场经验，先后获得南京江宁高新管委会、南京市国资紫金控股、印尼金光集团、上市公司等战略投资。基于海量标签，先后为银行、消费金融、保险、婚恋、租车等众多领域推出风险预警、信用评级等服务。
+                    </div>
+                    {% endblock %}
+                    <!--pages-->
+                {% block pages %}
+                 {% endblock %}
+                <!--//pages-->
+                <!--//text-->
+            </div>
+            <!--//main-->
+        </div>
+        <!--//article-->
+    </div>
+    <!--//content-->
+	<!--foot-->
+    {% include 'zixun/bottom.html' %}
+    <!--//foot-->
+</div>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<div class="toc">
+    <div class="ui vertical inverted sticky menu fixed top">
+        <a class="item" href="/index">
+      <b><i class="browser icon"></i>小视资讯</b>
+    </a>
+        {% for cate in all_cate %}
+             <div class="item">
+                <div class="header"><a href="/{{ cate.cate_id }}" style="color: #fff"> {{ cate.cate_name }}</a></div>
+                 <div class="menu">
+                     {% for tag in cate.cate_tag_info %}
+                         <a class="item" href="/{{ cate.cate_id }}/{{ tag.tag_id }}"><i class="angle right icon"></i>{{ tag.tag_name }}</a>
+                     {% endfor %}
+                 </div>
+             </div>
+        {% endfor %}
+    </div>
+</div>

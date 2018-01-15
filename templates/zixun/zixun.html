@@ -1,0 +1,195 @@
+{% extends 'zixun/basezx.html' %}
+{% load staticfiles %}
+{% block top %}
+    <!--top-->
+    <div class="ui masthead vertical segment">
+      <div class="ui container">
+        <div class="introduction">
+         <div class="ui statistics dividing">
+              <div class="statistic">
+                <div class="value">
+                {% for cate in cate_name %}
+                  {{ cate.cate_name }} /
+                {% endfor%}
+                </div>
+              </div>
+              <div class="red statistic">
+                <div class="value">
+                  {{ today_article }}
+                </div>
+                <div class="label">新增资讯 </div>
+              </div>
+              <div class="statistic">
+                <div class="value">
+                  {{ all_article }}
+                </div>
+                <div class="label">总数</div>
+              </div>
+              <div class="statistic last_id">
+                <div class="value">
+                  99
+                </div>
+                <div class="label">指数or阅读量</div>
+              </div>
+         </div>
+        </div>
+      <!--search-->
+      <!--//search-->
+      </div>
+    </div>
+    <!--//top-->
+{% endblock %}
+{% block  main_content %}
+    <!--box1-->
+    <div class="ui top attached tabular stackable menu">
+      <a href="/{{ cate_id }}/" class="item active">舆情/概况</a>
+      {% for tag in tags %}
+          <a href="/{{ cate_id }}/{{ tag.tag_id }}" class="item">{{ tag.tag_name }}</a>
+      {% endfor%}
+    </div>
+    <div class="ui active tab top_tab segment">
+        <div class="ui column grid stackable">
+        	<div class="eight wide column">
+                <div class="ui segment pd1" id="ecmain1" style="width:100%;height:360px;"></div>
+            </div>
+            <div class="eight wide column">
+                <div class="ui segment pd1" id="ecmain" style="width:100%;height:360px;"></div>
+            </div>
+        </div>
+        <div class="ui segment pd1">
+        	北京大学（Peking University）简称“北大”，诞生于1898年，初名京师大学堂，是中国近代第一所国立大学，也是第一个以“大学”之名创办的学校的进程。
+        </div>
+        <div class="ui segment grid stackable pd1" id="ecmain2" style="width:100%;height:360px;"></div>
+    </div>
+    <!--//box1-->
+    <script>
+    // 基于准备好的dom，初始化echarts实例
+    var main0 = echarts.init(document.getElementById('ecmain'),'macarons');
+
+    // 指定图表的配置项和数据
+    var option = {
+        title : {
+            text: '资讯来源',
+            subtext: '统计',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            orient: 'vertical',
+            left: 'left',
+            data:{{ source_leg|safe }}
+        },
+        series : [
+            {
+                name: '访问来源',
+                type: 'pie',
+                radius : '55%',
+                center: ['50%', '60%'],
+                data:{{ source_data|safe }},
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    main0.setOption(option);
+    window.onresize = main0.resize;
+    </script>
+    <script>
+     var main1 = echarts.init(document.getElementById('ecmain1'),'macarons');
+    var option1 = {
+        title: {
+            text: '近期热词',
+            subtext: '数据来自网络'
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'shadow'
+            }
+        },
+        legend: {
+            data: ['本周统计']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type: 'value',
+            boundaryGap: [0, 0.01]
+        },
+        yAxis: {
+            type: 'category',
+            data: {{ data_kw|safe }}
+        },
+        series: [
+            {
+                name: '本周统计',
+                type: 'bar',
+                data: {{ data_kw_num|safe }}
+            }
+        ]
+    };
+    main1.setOption(option1);
+    window.onresize = main1.resize;
+    </script>
+    <script>
+    var main2 = echarts.init(document.getElementById('ecmain2'),'macarons');
+    var option2 = {
+        title: {
+            text: '各版块讯息量统计',
+            subtext: '数据来自网络'
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+                label: {
+                    backgroundColor: '#6a7985'
+                }
+            }
+        },
+        legend: {
+            data:{{ tg_name_leg|safe }}
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                boundaryGap : false,
+                data : {{ time_line|safe }}
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        series : {{ tg_seris_data|safe }}
+    };
+     main2.setOption(option2);
+     window.onresize = main2.resize;
+    </script>
+{% endblock %}

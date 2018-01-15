@@ -1,0 +1,175 @@
+{% extends 'zixun/basezx.html' %}
+{% load staticfiles %}
+{% block content %}
+    <div class="ui statistics dividing">
+      <div class="statistic">
+        <div class="value">
+        {% for cate in cate_name %}
+          {{ cate.cate_name }} /
+        {% endfor%}
+        </div>
+      </div>
+      <div class="red statistic">
+        <div class="value">
+          {{ today_article }}
+        </div>
+        <div class="label">新增资讯 </div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          {{ all_article }}
+        </div>
+        <div class="label">总数</div>
+      </div>
+      <div class="statistic">
+        <div class="value">
+          99
+        </div>
+        <div class="label">指数or阅读量</div>
+      </div>
+    </div>
+    <div class="ui dividing header"></div>
+{#    <div class="ui attached stackable menu">#}
+{#          <div class="ui container">#}
+{#               {% for tag in tags %}#}
+{#                   {% if tag.tag_id == now_tag_id %}#}
+{#                       <a class="item active"><i class="home icon"></i> {{ tag.tag_name }}</a>#}
+{#                    {% else %}#}
+{#                       <a class="item"><i class="home icon"></i> {{ tag.tag_name }}</a>#}
+{#                   {% endif %}#}
+{#              {% endfor%}#}
+{#          </div>#}
+{#    </div>#}
+    <div class="ui top attached tabular stackable menu">
+      <a href="/{{ cate_id }}/" class="item">舆情/概况</a>
+       {% for tag in tags %}
+          {% if tag.tag_id == now_tag_id %}
+              <a href="/{{ cate_id }}/{{ tag.tag_id }}" class="item active">{{ tag.tag_name }}</a>
+          {% else %}
+              <a href="/{{ cate_id }}/{{ tag.tag_id }}" class="item">{{ tag.tag_name }}</a>
+          {% endif %}
+      {% endfor%}
+    </div>
+    <div class="ui active top_tab segment">
+      <!--内容-->
+      	<div class="ui column grid stackable">
+        	<div class="nine wide column">
+                <div class="ui items divided" style="padding-top: 10px;">
+                    {% for zx in zixun %}
+                      <div class="item ">
+                        <div class="content">
+                          <a href="{{ zx.link }}" class="header">{{ zx.title }}</a>
+                          <div class="meta">
+                            <span style="color:#000;">{% for kw in zx.kw %}{{ kw}} / {% endfor%}</span>
+                          </div>
+                          <div class="description">
+                            <p style="color:#aaa;">{{ zx.content|truncatechars:100}}</p>
+                          </div>
+                          <div class="extra">{{ zx.source }}-{{ zx.c_time }}</div>
+                        </div>
+                      </div>
+                    {% endfor%}
+                </div>
+            </div>
+        	<div class="seven wide column">
+                <div class="ui segment pd1">
+                	<div class="ui medium header">统计时间<div class="sub header">12-17 00:00:00~12-17 16:00:09</div></div>
+                </div>
+
+            	<div class="ui segment" id='ecmain5' style="width:100%;height:378px;"></div>
+                <div class="ui segment" id='ecmain3' style="width:100%;height:300px;"></div>
+            </div>
+        </div>
+
+      <!--//内容-->
+    </div>
+    <!--//box1-->
+    <script>
+    main3();
+    </script>
+    <script>
+     var main5 = echarts.init(document.getElementById('ecmain5'),'macarons');
+    var option5 = {
+        title : {
+            text: '板块热词',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            x : 'center',
+            y : 'bottom',
+            data:{{ data_kw|safe }}
+        },
+        toolbox: {
+            show : true,
+            feature : {
+                mark : {show: true},
+                dataView : {show: true, readOnly: false},
+                magicType : {
+                    show: true,
+                    type: ['pie', 'funnel']
+                },
+                restore : {show: true},
+                saveAsImage : {show: true}
+            }
+        },
+        calculable : true,
+        series : [
+            {
+                name:'面积模式',
+                type:'pie',
+                roseType : 'area',
+                data:{{ data_kw_dic|safe }}
+            }
+        ]
+    };
+    main5.setOption(option5);
+    window.onresize = main5.resize;
+    </script>
+    <script>
+    var main3 = echarts.init(document.getElementById('ecmain3'),'macarons');
+    var option3 = {
+        title: {
+            text: '新闻趋势统计'
+        },
+        tooltip: {
+            trigger: 'axis'
+        },
+        legend: {
+            data:['P/D']
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        toolbox: {
+            feature: {
+                saveAsImage: {}
+            }
+        },
+        xAxis: {
+            type: 'category',
+            boundaryGap: false,
+            data: ['周一','周二','周三','周四','周五','周六','周日']
+        },
+        yAxis: {
+            type: 'value'
+        },
+        series: [
+            {
+                name:'P/D',
+                type:'line',
+                stack: '总量',
+                data:[150, 95, 170, 324, 290, 330, 320]
+            }
+        ]
+    };
+    main3.setOption(option3);
+    window.onresize = main3.resize;
+    </script>
+{% endblock %}
